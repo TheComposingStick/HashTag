@@ -1,0 +1,33 @@
+name: HashTag
+id: HashTag
+key: HashTag
+author_link: http://thecomposingstick.com
+author_name: Rob Kenny
+description: Automate tweeting your entries including hashtags. 
+version: 2.5
+plugin_link: http://thecomposingstick.com/projects/hashtag
+
+settings:
+        tw_username:
+                Default: username
+                Scope: blog
+        tw_password:
+                Default: password
+                Scope: blog
+        tw_intro:
+                Default: 'Published a new post:'
+                Scope: blog
+        tw_community:
+                Default: mt
+                Scope: blog
+        tw_share:
+                Default: 1
+                Scope: blog
+blog_config_template: blog_config_template.tmpl
+
+callbacks:
+        MT::App::CMS::template_source.edit_entry: $HashTag::HashTag::Plugin::xfrm_edit
+        MT::App::CMS::cms_post_save.entry: $HashTag::HashTag::Plugin::hdlr_post_save
+        MT::App::CMS::cms_post_save.page: $HashTag::HashTag::Plugin::hdlr_post_save
+        scheduled_post_published: $HashTag::HashTag::Plugin::hdlr_scheduled_post
+

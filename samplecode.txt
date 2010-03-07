@@ -1,0 +1,8 @@
+<mt:EntryIfTagged>
+   <div class="entry-tags">
+      <h4>Tags<span class="delimiter">:</span></h4>
+      <ul>
+         <li><mt:EntryTags glue='<span class="delimiter">,</span></li> <li>'><a href="javascript:void(0)" onclick="location.href='http://search.twitter.com/search?q=%23<$mt:TagName normalize="1"$>';return false;" rel="nofollow"><$mt:TagName$></a></mt:EntryTags></li>
+      </ul>
+   </div>
+</mt:EntryIfTagged>

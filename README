@@ -1,0 +1,68 @@
+Introduction
+============
+This document describes the installation, configuration and use of the HashTag plugin. The current version of the plugin is 2.5, please note that this version is designed for Movable Type version 4.x, there have been changes to the layout of the entry edit screen in Movable Type version 5 that will require additional changes to the plugin. In the future there will be two version, one that works with version 4 and one for version 5. For the latest copy of the plugin please go to http://thecomposingstick.com/projects/hashtag. 
+
+The HashTag plugin is yet another twitter plugin. It will Tweet the entry title and a link using the account in the plugin settings, it can also add hashtags to your tweets. Hashtags are Twitter’s version oftags, they provide a way of adding structure to your tweets and allowing people to filter tweets against their interests.
+
+It was written because I was always forgetting to add #mt to all my MT related blog post tweets, which in turn meant that they were being missed by HashMT http://plasticmind.com/hashmt/ which collates all the #mt posts onto a single site.
+
+Installation
+============
+1. Copy the HashTag directory to your Movable Type plugin directory.
+
+Configuration
+=============
+1. Log onto Movable Type and select your blog.
+2. From the top menu select Tools > Plugins
+3. From the list of plugins select HashTag 2.5 and click on settings
+3.1 Enter your Twitter username and password. This is the account that will be used for all tweets from this blog.
+3.2 Introduction: this will prefix all your your tweets.
+3.3 Hash Tag: This is the default hashtag that will be used for all your tweets.
+3.4 Select your default tweet option, this can be overridden when posting an entry or creating a new page.
+4. Don’t forget to save changes.
+
+Usage
+=====
+When you create or edit an entry or page, you will see a drop down list under publishing with your HashTag options. This allows you to override your default settings. If you select Tweet tags as hashtags then all the tags will be used except private tags (tags that start with the @ symbol) which will be ignored. Tags with spaces in their name will be have the spaces removed, this is the same as the normalisation that Movable Type does in the background.
+
+You can add a set of links at the bottom of you entries that will search Twiiter for tweets with the same HashTags. Add the following code to your entry template (see samplecode.txt in the HashTag plugin folder)
+
+<mt:EntryIfTagged>
+<div class="entry-tags">
+<h4>Tags<span class="delimiter">:</span></h4>
+<ul>
+<li><mt:EntryTags glue='<span class="delimiter">,</span></li> <li>'>
+<a href="javascript:void(0)"
+onclick="location.href='http://search.twitter.com/search?q=%23
+<$mt:TagName normalize="1"$>';return false;" rel="nofllow">
+<$mt:TagName$></a>
+</mt:EntryTags>
+</li>
+</ul>
+</div>
+</mt:EntryIfTagged>
+
+History
+=======
+
+Version 2.5
+------------
+Current Version
+* Removed default intro if blank.
+* Removed dependency on XML::Atom.
+* Changed post override options from radio group to single select list to save space.
+* Added support for scheduled posts. NOTE: Schedule posts will always use the plugin default settings at the time the post is published.
+* Refactored duplicate code into functions.
+* Check for Movable Type proxy configuration. Thanks to Alvar Freude (http://www.perl-blog.de) for supplying patch to do this.
+
+
+Version 2.0
+-----------
+* Added option to treat entry and page tags as HashTags.
+* Help from Jay Allen (http://endevver.com/) to make sure HashTags was using functions already in Movable Type rather than re-inventing the wheel.
+
+Version 1.0
+-----------
+* Original version, based on Ian Fenn’s mt-twitter plugin http://plugins.movabletype.org/mttwitter-1/
+* Added option to include a default HashTag when tweeting
+
